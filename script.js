@@ -1,9 +1,9 @@
-let body = document.body;
-let url = window.location.toString();
+const body = document.body;
+const url = window.location.toString();
 
 let getName = (url) => {
-let getUrl = url.split('=');
-let userName = getUrl[1];
+ let getUrl = url.split('=');
+ let userName = getUrl[1];
  if (userName == undefined){
    userName = 'KateDoroshi';
  }
@@ -11,7 +11,7 @@ let userName = getUrl[1];
 }
 let name = getName(url);
 
-fetch('https://api.github.com/users/' + name)
+fetch(`https://api.github.com/users/${name}`)
   .then(res => res.json()) 
   .then(json => {
     const avatar = json.avatar_url; 
@@ -32,22 +32,9 @@ fetch('https://api.github.com/users/' + name)
     if (bio != null) {
   	  userBio.innerHTML = bio;
     } else {
-  	  alert('Информация о пользователе не доступна')
+  	  alert('Информация о пользователе не доступна');
     }
     body.appendChild(userBio); 
   })
 
-.catch(err => console.log(err + 'Информация о пользователе не доступна'))
-
-
-
-
-
-
-
-
-
-
-
-
-
+.catch(err => console.log(err + 'Информация о пользователе не доступна'));
